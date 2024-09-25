@@ -27,11 +27,11 @@ npm install -g newman newman-reporter-htmlextra
 
 # Create a directory for the tests
 echo "Creating a directory for the tests..."
-mkdir -p ~/airbnb_api_tests
-cd ~/airbnb_api_tests
+mkdir -p ./airbnb_api_tests
+cd ./airbnb_api_tests
 
 # Prompt user to move test files
-echo "Please move your airbnb_clone.postman_collection.json and airbnb_clone_env.json files to ~/airbnb_api_tests"
+echo "Please move your airbnb_clone.postman_collection.json and airbnb_clone_env.json files to ./airbnb_api_tests"
 echo "Press enter when you've done this."
 read
 
@@ -42,5 +42,5 @@ then
     echo "To run the tests, use the following command:"
     echo "newman run airbnb_clone.postman_collection.json -e airbnb_clone_env.json -r cli,htmlextra"
 else
-    echo "Test files not found in ~/airbnb_api_tests. Please make sure to move them there."
+    echo "Test files not found in ./airbnb_api_tests. Please make sure to move them there."
 fi

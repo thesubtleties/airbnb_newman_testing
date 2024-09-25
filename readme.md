@@ -61,7 +61,7 @@ After running the tests, you'll find an HTML report in the same directory. This 
 If you encounter any issues during setup or while running the tests, please check the following:
 
 1. Ensure you have the necessary permissions to install global npm packages
-2. Verify that your `airbnb_clone.postman_collection.json` and `airbnb_clone_env.json` files are in the correct directory (~/airbnb_api_tests)
+2. Verify that your `airbnb_clone.postman_collection.json` and `airbnb_clone_env.json` files are in the correct directory (./airbnb_api_tests)
 3. Make sure your API server is running and accessible
 
 If problems persist, please open an issue in this repository with details about the error you're encountering.
