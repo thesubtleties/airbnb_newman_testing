@@ -1,0 +1,37 @@
+{
+  "id": "your-environment-id-here",
+  "name": "AirBnB Clone API Environment",
+  "values": [
+    {
+      "key": "url",
+      "value": "http://localhost:8000/api",
+      "enabled": true
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000/api",
+      "enabled": true
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "spotId",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "sessionCookie",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "csrfToken",
+      "value": "",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}

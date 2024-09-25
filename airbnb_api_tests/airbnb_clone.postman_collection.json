@@ -1,0 +1,4302 @@
+{
+  "info": {
+    "_postman_id": "328b545c-5c21-4118-9515-b0824b5bdf62",
+    "name": "AirBNB_Comprehensive",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15571502"
+  },
+  "item": [
+    {
+      "name": "Get CSRF Token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var xsrfCookie = postman.getResponseCookie(\"XSRF-TOKEN\"); ",
+              "postman.setEnvironmentVariable('xsrftoken', xsrfCookie.value);",
+              "",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"XSRF-TOKEN cookie is present\", function () {",
+              "    pm.expect(xsrfCookie).to.not.be.undefined;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/csrf/restore",
+          "host": ["{{url}}"],
+          "path": ["csrf", "restore"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Get Spots of Current User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/spots/current",
+          "host": ["{{url}}"],
+          "path": ["spots", "current"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Get Reviews of Current User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/reviews/current",
+          "host": ["{{url}}"],
+          "path": ["reviews", "current"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Get All Current User's Bookings",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/bookings/current",
+          "host": ["{{url}}"],
+          "path": ["bookings", "current"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Get All Bookings for a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/spots/5000/bookings",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000", "bookings"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Create a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots",
+          "host": ["{{url}}"],
+          "path": ["spots"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Create an Image for a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/5000/images",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Create a Review for a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/5000/reviews",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000", "reviews"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Create an Image for a Review",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/5000/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "5000", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Create a Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/5000/bookings",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000", "bookings"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Edit a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/5000",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Edit a Review",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/5000",
+          "host": ["{{url}}"],
+          "path": ["reviews", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Edit a Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/bookings/5000",
+          "host": ["{{url}}"],
+          "path": ["bookings", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Delete a Spot Image",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spot-images/5000",
+          "host": ["{{url}}"],
+          "path": ["spot-images", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Delete a Review Image",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/review-images/5000",
+          "host": ["{{url}}"],
+          "path": ["review-images", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Delete a Review",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/5000",
+          "host": ["{{url}}"],
+          "path": ["reviews", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Delete a Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/bookings/5000",
+          "host": ["{{url}}"],
+          "path": ["bookings", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Delete a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/5000",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Current User - Not Logged In",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.user).to.be.null;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/session",
+          "host": ["{{url}}"],
+          "path": ["session"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sign Up",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.user).to.be.an('object');",
+              "    pm.expect(jsonData.user).to.have.all.keys('id', 'firstName', 'lastName', 'email', 'username');",
+              "});",
+              "",
+              "if (pm.response.code === 201) {",
+              "    pm.environment.set(\"userId\", pm.response.json().user.id);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"FirstTest\",\n  \"lastName\": \"AATester\",\n  \"email\": \"first.test@gmail.com\",\n  \"username\": \"firstaatester\",\n  \"password\": \"secret password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/users",
+          "host": ["{{url}}"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Sign Up - Duplicate Email",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 500\", function () {",
+              "    pm.response.to.have.status(500);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"User already exists\");",
+              "    pm.expect(jsonData.errors.email).to.eql(\"User with that email already exists\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"FirstTest\",\n  \"lastName\": \"AATester\",\n  \"email\": \"first.test@gmail.com\",\n  \"username\": \"uniqueusername\",\n  \"password\": \"secret password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/users",
+          "host": ["{{url}}"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Sign Up - Duplicate Username",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 500\", function () {",
+              "    pm.response.to.have.status(500);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"User already exists\");",
+              "    pm.expect(jsonData.errors.username).to.eql(\"User with that username already exists\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"FirstTest\",\n  \"lastName\": \"AATester\",\n  \"email\": \"unique.email@gmail.com\",\n  \"username\": \"firstaatester\",\n  \"password\": \"secret password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/users",
+          "host": ["{{url}}"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Sign Up - Body Validation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Error message and structure are correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.be.oneOf([\"Bad Request\", \"Validation error\"]);",
+              "    pm.expect(jsonData.errors).to.be.an('object');",
+              "    pm.expect(jsonData.errors).to.have.all.keys('email', 'username', 'firstName', 'lastName');",
+              "    pm.expect(jsonData.errors.email).to.eql(\"Invalid email\");",
+              "    pm.expect(jsonData.errors.username).to.eql(\"Username is required\");",
+              "    pm.expect(jsonData.errors.firstName).to.eql(\"First Name is required\");",
+              "    pm.expect(jsonData.errors.lastName).to.eql(\"Last Name is required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"email\": \"\",\n  \"username\": \"\",\n  \"password\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/users",
+          "host": ["{{url}}"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Edit a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/5000",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Edit a Review",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/5000",
+          "host": ["{{url}}"],
+          "path": ["reviews", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Edit a Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/bookings/5000",
+          "host": ["{{url}}"],
+          "path": ["bookings", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Delete a Spot Image",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spot-images/5000",
+          "host": ["{{url}}"],
+          "path": ["spot-images", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Delete a Review Image",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/review-images/5000",
+          "host": ["{{url}}"],
+          "path": ["review-images", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Delete a Review",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/5000",
+          "host": ["{{url}}"],
+          "path": ["reviews", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Delete a Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/bookings/5000",
+          "host": ["{{url}}"],
+          "path": ["bookings", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "REQ AUTH - Delete a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Authentication required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/5000",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Current User - Not Logged In",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.user).to.be.null;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/session",
+          "host": ["{{url}}"],
+          "path": ["session"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sign Up",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.user).to.be.an('object');",
+              "    pm.expect(jsonData.user).to.have.all.keys('id', 'firstName', 'lastName', 'email', 'username');",
+              "});",
+              "",
+              "if (pm.response.code === 201) {",
+              "    pm.environment.set(\"userId\", pm.response.json().user.id);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"FirstTest\",\n  \"lastName\": \"AATester\",\n  \"email\": \"first.test@gmail.com\",\n  \"username\": \"firstaatester\",\n  \"password\": \"secret password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/users",
+          "host": ["{{url}}"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Sign Up - Duplicate Email",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 500\", function () {",
+              "    pm.response.to.have.status(500);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"User already exists\");",
+              "    pm.expect(jsonData.errors.email).to.eql(\"User with that email already exists\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"FirstTest\",\n  \"lastName\": \"AATester\",\n  \"email\": \"first.test@gmail.com\",\n  \"username\": \"uniqueusername\",\n  \"password\": \"secret password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/users",
+          "host": ["{{url}}"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Sign Up - Duplicate Username",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 500\", function () {",
+              "    pm.response.to.have.status(500);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"User already exists\");",
+              "    pm.expect(jsonData.errors.username).to.eql(\"User with that username already exists\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"FirstTest\",\n  \"lastName\": \"AATester\",\n  \"email\": \"unique.email@gmail.com\",\n  \"username\": \"firstaatester\",\n  \"password\": \"secret password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/users",
+          "host": ["{{url}}"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Sign Up - Body Validation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Error message and structure are correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.be.oneOf([\"Bad Request\", \"Validation error\"]);",
+              "    pm.expect(jsonData.errors).to.be.an('object');",
+              "    pm.expect(jsonData.errors).to.have.all.keys('email', 'username', 'firstName', 'lastName');",
+              "    pm.expect(jsonData.errors.email).to.eql(\"Invalid email\");",
+              "    pm.expect(jsonData.errors.username).to.eql(\"Username is required\");",
+              "    pm.expect(jsonData.errors.firstName).to.eql(\"First Name is required\");",
+              "    pm.expect(jsonData.errors.lastName).to.eql(\"Last Name is required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"email\": \"\",\n  \"username\": \"\",\n  \"password\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/users",
+          "host": ["{{url}}"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Log In - Username",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson.user).to.be.an('object');",
+              "    pm.expect(responseJson.user).to.have.all.keys('id', 'firstName', 'lastName', 'email', 'username');",
+              "});",
+              "",
+              "pm.test(\"Session token is set\", function () {",
+              "    pm.expect(pm.response.headers.has('Set-Cookie')).to.be.true;",
+              "    const cookieHeader = pm.response.headers.get('Set-Cookie');",
+              "    pm.expect(cookieHeader).to.include('token=');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"credential\": \"firstaatester\",\n  \"password\": \"secret password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/session",
+          "host": ["{{url}}"],
+          "path": ["session"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Log Out",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct message\", function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson.message).to.eql(\"Successfully logged out\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/session",
+          "host": ["{{url}}"],
+          "path": ["session"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Log In - Invalid Credentials",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson.message).to.eql(\"Invalid credentials\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"credential\": \"firstaatester\",\n  \"password\": \"wrong password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/session",
+          "host": ["{{url}}"],
+          "path": ["session"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Log In - Body Validation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Error message and structure are correct\", function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson.message).to.be.oneOf([\"Bad Request\", \"Validation error\"]);",
+              "    pm.expect(responseJson.errors).to.be.an('object');",
+              "    pm.expect(responseJson.errors.credential).to.eql(\"Email or username is required\");",
+              "    pm.expect(responseJson.errors.password).to.eql(\"Password is required\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"credential\": \"\",\n  \"password\": \"\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/session",
+          "host": ["{{url}}"],
+          "path": ["session"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Log In - Email",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson.user).to.be.an('object');",
+              "    pm.expect(responseJson.user).to.have.all.keys('id', 'firstName', 'lastName', 'email', 'username');",
+              "});",
+              "",
+              "pm.test(\"Session token is set\", function () {",
+              "    pm.expect(pm.response.headers.has('Set-Cookie')).to.be.true;",
+              "    const cookieHeader = pm.response.headers.get('Set-Cookie');",
+              "    pm.expect(cookieHeader).to.include('token=');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"credential\": \"first.test@gmail.com\",\n  \"password\": \"secret password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/session",
+          "host": ["{{url}}"],
+          "path": ["session"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Current User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson.user).to.be.an('object');",
+              "    pm.expect(responseJson.user).to.have.all.keys('id', 'firstName', 'lastName', 'email', 'username');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/session",
+          "host": ["{{url}}"],
+          "path": ["session"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Spots",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson.Spots).to.be.an('array');",
+              "    if (responseJson.Spots.length > 0) {",
+              "        pm.expect(responseJson.Spots[0]).to.have.all.keys('id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt', 'avgRating', 'previewImage');",
+              "    }",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/spots",
+          "host": ["{{url}}"],
+          "path": ["spots"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson).to.have.all.keys('id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt');",
+              "});",
+              "",
+              "const responseJson = pm.response.json();",
+              "postman.setEnvironmentVariable('spotId', responseJson.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"address\": \"123 Should Exist Street\",\n  \"city\": \"San Frangoodtogo\",\n  \"state\": \"California\",\n  \"country\": \"United States of Valid Data\",\n  \"lat\": 37.7645358,\n  \"lng\": -122.4730327,\n  \"name\": \"The Good Spot\",\n  \"description\": \"Place where valid data can stay\",\n  \"price\": 123\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots",
+          "host": ["{{url}}"],
+          "path": ["spots"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create an Image for a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson).to.have.all.keys('id', 'url', 'preview');",
+              "});",
+              "",
+              "const responseJson = pm.response.json();",
+              "postman.setEnvironmentVariable('spotImageId', responseJson.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image.url\",\n  \"preview\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/images",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create a Spot - Body Validation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Error message and structure are correct\", function () {",
+              "    const responseJson = pm.response.json();",
+              "    pm.expect(responseJson.message).to.be.oneOf([\"Bad Request\", \"Validation error\"]);",
+              "    pm.expect(responseJson.errors).to.be.an('object');",
+              "    pm.expect(responseJson.errors).to.include.all.keys('address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"address\": \"\",\n  \"city\": \"\",\n  \"state\": \"\",\n  \"country\": \"\",\n  \"lat\": 537.7645358,\n  \"lng\": -522.4730327,\n  \"name\": \"This Spot's name is longer than 50 characters, which means this should throw an error!\",\n  \"description\": \"\",\n  \"price\": -50\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots",
+          "host": ["{{url}}"],
+          "path": ["spots"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create an Image for a Spot - Invalid Spot Id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Spot couldn't be found\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image.url\",\n  \"preview\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/5000/images",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Spots - Verify Creation, Prevention, Image Update",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.Spots).to.be.an('array');",
+              "    if (jsonData.Spots.length > 0) {",
+              "        pm.expect(jsonData.Spots[0]).to.have.all.keys('id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt', 'avgRating', 'previewImage');",
+              "    }",
+              "});",
+              "",
+              "pm.test(\"Verify created spot exists\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    var createdSpot = jsonData.Spots.find(spot => spot.id === parseInt(pm.environment.get('spotId')));",
+              "    pm.expect(createdSpot).to.not.be.undefined;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/spots",
+          "host": ["{{url}}"],
+          "path": ["spots"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Spots of Current User - Verify Creation, Prevention, Image Update",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.Spots).to.be.an('array');",
+              "    if (jsonData.Spots.length > 0) {",
+              "        pm.expect(jsonData.Spots[0]).to.have.all.keys('id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt', 'avgRating', 'previewImage');",
+              "    }",
+              "});",
+              "",
+              "pm.test(\"Verify created spot exists\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    var createdSpot = jsonData.Spots.find(spot => spot.id === parseInt(pm.environment.get('spotId')));",
+              "    pm.expect(createdSpot).to.not.be.undefined;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/spots/current",
+          "host": ["{{url}}"],
+          "path": ["spots", "current"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Details of a Spot by Id - Verify Creation, Image Update",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt', 'numReviews', 'avgStarRating', 'SpotImages', 'Owner');",
+              "    pm.expect(jsonData.SpotImages).to.be.an('array');",
+              "    pm.expect(jsonData.Owner).to.be.an('object');",
+              "});",
+              "",
+              "pm.test(\"Verify spot details\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.id).to.eql(parseInt(pm.environment.get('spotId')));",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Get Details of a Spot by Id - Invalid Spot Id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Spot couldn't be found\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/spots/5000",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Edit a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt');",
+              "});",
+              "",
+              "pm.test(\"Verify spot details are updated\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.address).to.eql(\"321 Valid Edit Way\");",
+              "    pm.expect(jsonData.city).to.eql(\"Edicity\");",
+              "    pm.expect(jsonData.state).to.eql(\"New Editia\");",
+              "    pm.expect(jsonData.country).to.eql(\"United States of Edited Data\");",
+              "    pm.expect(jsonData.name).to.eql(\"The Edited Spot\");",
+              "    pm.expect(jsonData.description).to.eql(\"Place where valid edits can stay\");",
+              "    pm.expect(jsonData.price).to.eql(321);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"address\": \"321 Valid Edit Way\",\n  \"city\": \"Edicity\",\n  \"state\": \"New Editia\",\n  \"country\": \"United States of Edited Data\",\n  \"lat\": -26.6534247,\n  \"lng\": 133.5641438,\n  \"name\": \"The Edited Spot\",\n  \"description\": \"Place where valid edits can stay\",\n  \"price\": 321\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Edit a Spot - Body Validation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Error message and structure are correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.be.oneOf([\"Bad Request\", \"Validation error\"]);",
+              "    pm.expect(jsonData.errors).to.be.an('object');",
+              "    pm.expect(jsonData.errors).to.include.all.keys('address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"address\": \"\",\n  \"city\": \"\",\n  \"state\": \"\",\n  \"country\": \"\",\n  \"lat\": 537.7645358,\n  \"lng\": -522.4730327,\n  \"name\": \"This Spot's name is longer than 50 characters, which means this should throw an error!\",\n  \"description\": \"\",\n  \"price\": -50\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Edit a Spot - Invalid Spot Id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Spot couldn't be found\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"address\": \"321 Valid Edit Way\",\n  \"city\": \"Edicity\",\n  \"state\": \"New Editia\",\n  \"country\": \"United States of Edited Data\",\n  \"lat\": -26.6534247,\n  \"lng\": 133.5641438,\n  \"name\": \"The Edited Spot\",\n  \"description\": \"Place where valid edits can stay\",\n  \"price\": 321\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/5000",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Spots - Verify Edits",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.Spots).to.be.an('array');",
+              "    if (jsonData.Spots.length > 0) {",
+              "        pm.expect(jsonData.Spots[0]).to.have.all.keys('id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'description', 'price', 'createdAt', 'updatedAt', 'avgRating', 'previewImage');",
+              "    }",
+              "});",
+              "",
+              "pm.test(\"Verify edited spot exists\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    var editedSpot = jsonData.Spots.find(spot => spot.id === parseInt(pm.environment.get('spotId')));",
+              "    pm.expect(editedSpot).to.not.be.undefined;",
+              "    pm.expect(editedSpot.name).to.eql(\"The Edited Spot\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/spots",
+          "host": ["{{url}}"],
+          "path": ["spots"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create a 2nd User for Testing",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.user).to.be.an('object');",
+              "    pm.expect(jsonData.user).to.have.all.keys('id', 'firstName', 'lastName', 'email', 'username');",
+              "});",
+              "",
+              "if (pm.response.code === 201) {",
+              "    pm.environment.set(\"userId2\", pm.response.json().user.id);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"SecondTest\",\n  \"lastName\": \"AATester\",\n  \"email\": \"second.test@gmail.com\",\n  \"username\": \"secondaatester\",\n  \"password\": \"secret password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/users",
+          "host": ["{{url}}"],
+          "path": ["users"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "***** Log In as 2nd User *****",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.user).to.be.an('object');",
+              "    pm.expect(jsonData.user).to.have.all.keys('id', 'firstName', 'lastName', 'email', 'username');",
+              "});",
+              "",
+              "pm.test(\"Session token is set\", function () {",
+              "    pm.expect(pm.response.headers.has('Set-Cookie')).to.be.true;",
+              "    var cookieHeader = pm.response.headers.get('Set-Cookie');",
+              "    pm.expect(cookieHeader).to.include('token=');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"credential\": \"secondaatester\",\n  \"password\": \"secret password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/session",
+          "host": ["{{url}}"],
+          "path": ["session"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "NOT AUTHED - Create an Image for a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 403\", function () {",
+              "    pm.response.to.have.status(403);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Forbidden\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"blackmail-image.url\",\n  \"preview\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/images",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "NOT AUTHED - Edit a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 403\", function () {",
+              "    pm.response.to.have.status(403);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Forbidden\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"address\": \"Not Your Spot Rd\",\n  \"city\": \"Trespass City\",\n  \"state\": \"Not Your State\",\n  \"country\": \"Unauthorized States of Americannot\",\n  \"lat\": -50.6534247,\n  \"lng\": 100.5641438,\n  \"name\": \"Not Your Name\",\n  \"description\": \"A place that you shouldn't have access to\",\n  \"price\": 100\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "NOT AUTHED - Delete a Spot",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 403\", function () {",
+              "    pm.response.to.have.status(403);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Forbidden\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "NOT AUTHED - Delete a Spot Image",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 403\", function () {",
+              "    pm.response.to.have.status(403);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Forbidden\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spot-images/{{spotImageId}}",
+          "host": ["{{url}}"],
+          "path": ["spot-images", "{{spotImageId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create a Review - Body Validation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Error message and structure are correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.be.oneOf([\"Bad Request\", \"Validation error\"]);",
+              "    pm.expect(jsonData.errors).to.be.an('object');",
+              "    pm.expect(jsonData.errors.review).to.eql(\"Review text is required\");",
+              "    pm.expect(jsonData.errors.stars).to.eql(\"Stars must be an integer from 1 to 5\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"review\": \"\",\n    \"stars\": -3\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/reviews",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "reviews"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create a Review - Invalid Spot Id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Spot couldn't be found\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"review\": \"This was an awesome spot!\",\n  \"stars\": 5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/5000/reviews",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000", "reviews"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create a Review",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt');",
+              "});",
+              "",
+              "const responseJson = pm.response.json();",
+              "postman.setEnvironmentVariable('reviewId', responseJson.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"review\": \"This was an awesome spot!\",\n  \"stars\": 5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/reviews",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "reviews"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create a Review - Already Reviewed",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 500\", function () {",
+              "    pm.response.to.have.status(500);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"User already has a review for this spot\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"review\": \"This was an awesome spot!\",\n  \"stars\": 5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/reviews",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "reviews"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create an Image for a Review  - Invalid Review Id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Review couldn't be found\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/5000/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "5000", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create an Image for a Review - 1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'url');",
+              "});",
+              "",
+              "const responseJson = pm.response.json();",
+              "postman.setEnvironmentVariable('reviewImageId', responseJson.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image1.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create an Image for a Review - 2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'url');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image2.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create an Image for a Review - 3",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'url');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image3.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create an Image for a Review - 4",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'url');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image4.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create an Image for a Review - 5",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'url');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image5.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create an Image for a Review - 6",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'url');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image6.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create an Image for a Review - 7",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'url');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image7.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create an Image for a Review - 8",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'url');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image8.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create an Image for a Review - 9",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'url');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image9.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create an Image for a Review - 10",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'url');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image10.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create an Image for a Review - Limit Reached",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 403\", function () {",
+              "    pm.response.to.have.status(403);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Maximum number of images for this resource was reached\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"image_limit.url\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}/images",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}", "images"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Reviews of Current User - Verify Creation, Prevention, Image Update",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.Reviews).to.be.an('array');",
+              "    if (jsonData.Reviews.length > 0) {",
+              "        pm.expect(jsonData.Reviews[0]).to.have.all.keys('id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt', 'User', 'Spot', 'ReviewImages');",
+              "    }",
+              "});",
+              "",
+              "pm.test(\"Verify created review exists\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    var createdReview = jsonData.Reviews.find(review => review.id === parseInt(pm.environment.get('reviewId')));",
+              "    pm.expect(createdReview).to.not.be.undefined;",
+              "    pm.expect(createdReview.ReviewImages.length).to.equal(10);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/reviews/current",
+          "host": ["{{url}}"],
+          "path": ["reviews", "current"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Reviews by Spot Id - Verify Creation, Prevention, Image Update",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.Reviews).to.be.an('array');",
+              "    if (jsonData.Reviews.length > 0) {",
+              "        pm.expect(jsonData.Reviews[0]).to.have.all.keys('id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt', 'User', 'ReviewImages');",
+              "    }",
+              "});",
+              "",
+              "pm.test(\"Verify created review exists\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    var createdReview = jsonData.Reviews.find(review => review.id === parseInt(pm.environment.get('reviewId')));",
+              "    pm.expect(createdReview).to.not.be.undefined;",
+              "    pm.expect(createdReview.ReviewImages.length).to.equal(10);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/reviews",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "reviews"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Get Reviews by Spot Id - Invalid Spot Id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Spot couldn't be found\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/spots/5000/reviews",
+          "host": ["{{url}}"],
+          "path": ["spots", "5000", "reviews"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Edit a Review",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt');",
+              "});",
+              "",
+              "pm.test(\"Review is updated correctly\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.review).to.eql(\"This was an TERRIBLE spot!\");",
+              "    pm.expect(jsonData.stars).to.eql(1);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"review\": \"This was an TERRIBLE spot!\",\n  \"stars\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Edit a Review - Invalid Body",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Error message and structure are correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.be.oneOf([\"Bad Request\", \"Validation error\"]);",
+              "    pm.expect(jsonData.errors).to.be.an('object');",
+              "    pm.expect(jsonData.errors.review).to.eql(\"Review text is required\");",
+              "    pm.expect(jsonData.errors.stars).to.eql(\"Stars must be an integer from 1 to 5\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"review\": \"\",\n  \"stars\": -3\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/{{reviewId}}",
+          "host": ["{{url}}"],
+          "path": ["reviews", "{{reviewId}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Edit a Review - Invalid Review Id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Review couldn't be found\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"review\": \"This was an TERRIBLE spot!\",\n  \"stars\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/reviews/5000",
+          "host": ["{{url}}"],
+          "path": ["reviews", "5000"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Reviews of Current User - Verify Edits",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.Reviews).to.be.an('array');",
+              "    if (jsonData.Reviews.length > 0) {",
+              "        pm.expect(jsonData.Reviews[0]).to.have.all.keys('id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt', 'User', 'Spot', 'ReviewImages');",
+              "    }",
+              "});",
+              "",
+              "pm.test(\"Verify edited review exists\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    var editedReview = jsonData.Reviews.find(review => review.id === parseInt(pm.environment.get('reviewId')));",
+              "    pm.expect(editedReview).to.not.be.undefined;",
+              "    pm.expect(editedReview.review).to.eql(\"This was an TERRIBLE spot!\");",
+              "    pm.expect(editedReview.stars).to.eql(1);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/reviews/current",
+          "host": ["{{url}}"],
+          "path": ["reviews", "current"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Reviews by Spot Id - Verify Edits",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.Reviews).to.be.an('array');",
+              "    if (jsonData.Reviews.length > 0) {",
+              "        pm.expect(jsonData.Reviews[0]).to.have.all.keys('id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt', 'User', 'ReviewImages');",
+              "    }",
+              "});",
+              "",
+              "pm.test(\"Verify edited review exists\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    var editedReview = jsonData.Reviews.find(review => review.id === parseInt(pm.environment.get('reviewId')));",
+              "    pm.expect(editedReview).to.not.be.undefined;",
+              "    pm.expect(editedReview.review).to.eql(\"This was an TERRIBLE spot!\");",
+              "    pm.expect(editedReview.stars).to.eql(1);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/reviews",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "reviews"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create a Booking Based on a Spot Id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'spotId', 'userId', 'startDate', 'endDate', 'createdAt', 'updatedAt');",
+              "});",
+              "",
+              "const responseJson = pm.response.json();",
+              "postman.setEnvironmentVariable('bookingId', responseJson.id)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"startDate\": \"2030-11-22\",\n  \"endDate\": \"2030-11-26\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/bookings",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "bookings"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create a 2nd Booking Based on a Spot Id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "",
+              "pm.test(\"Response has correct structure\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.all.keys('id', 'spotId', 'userId', 'startDate', 'endDate', 'createdAt', 'updatedAt');",
+              "});",
+              "",
+              "const responseJson = pm.response.json();",
+              "postman.setEnvironmentVariable('bookingId2', responseJson.id)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"startDate\": \"2030-10-22\",\n  \"endDate\": \"2030-10-26\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/bookings",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "bookings"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create a Booking - Conflicting Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 403\", function () {",
+              "    pm.response.to.have.status(403);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Sorry, this spot is already booked for the specified dates\");",
+              "    pm.expect(jsonData.errors).to.be.an('object');",
+              "    pm.expect(jsonData.errors.startDate).to.eql(\"Start date conflicts with an existing booking\");",
+              "    pm.expect(jsonData.errors.endDate).to.eql(\"End date conflicts with an existing booking\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"startDate\": \"2030-11-22\",\n  \"endDate\": \"2030-11-26\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/bookings",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "bookings"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create a Booking - Same Start & End Date",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Bad Request\");",
+              "    pm.expect(jsonData.errors.endDate).to.eql(\"endDate cannot be on or before startDate\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"startDate\": \"2030-12-22\",\n  \"endDate\": \"2030-12-22\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/bookings",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "bookings"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create a Booking - End Date Before Start Date",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Bad Request\");",
+              "    pm.expect(jsonData.errors.endDate).to.eql(\"endDate cannot come before startDate\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"startDate\": \"2030-12-22\",\n  \"endDate\": \"2030-12-20\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/bookings",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "bookings"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create a Booking - Start Date On Existing Start Date",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 403\", function () {",
+              "    pm.response.to.have.status(403);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Sorry, this spot is already booked for the specified dates\");",
+              "    pm.expect(jsonData.errors.startDate).to.eql(\"Start date conflicts with an existing booking\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"startDate\": \"2030-11-22\",\n  \"endDate\": \"2030-11-28\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/bookings",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "bookings"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create a Booking - Start Date On Existing End Date",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 403\", function () {",
+              "    pm.response.to.have.status(403);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Sorry, this spot is already booked for the specified dates\");",
+              "    pm.expect(jsonData.errors.startDate).to.eql(\"Start date conflicts with an existing booking\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"startDate\": \"2030-11-26\",\n  \"endDate\": \"2030-11-28\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/bookings",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "bookings"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ERROR - Create a Booking - End Date On Existing Start Date",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 403\", function () {",
+              "    pm.response.to.have.status(403);",
+              "});",
+              "",
+              "pm.test(\"Error message is correct\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql(\"Sorry, this spot is already booked for the specified dates\");",
+              "    pm.expect(jsonData.errors.endDate).to.eql(\"End date conflicts with an existing booking\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "XSRF-TOKEN",
+            "value": "{{xsrftoken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"startDate\": \"2030-11-20\",\n  \"endDate\": \"2030-11-22\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/spots/{{spotId}}/bookings",
+          "host": ["{{url}}"],
+          "path": ["spots", "{{spotId}}", "bookings"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
